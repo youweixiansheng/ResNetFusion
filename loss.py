@@ -60,7 +60,7 @@ class GeneratorLoss(nn.Module):
         coefficient = pyramid_addition * alpha/2 + 1
         image_loss = ((out_images - target_ir).abs()*coefficient).mean()
         # TV Loss
-        fusion_tv = self.tv_loss(target_images) + self.tv_loss(target_ir)
+        fusion_tv = self.tv_loss(target_images)
         tv_loss = self.mse_loss(self.tv_loss(out_images) , fusion_tv)
         ir_tv_loss = self.mse_loss(self.tv_loss(out_images) , self.tv_loss(target_ir))
 
