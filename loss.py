@@ -57,7 +57,7 @@ class GeneratorLoss(nn.Module):
         show_pyramid_heatmap = torch.cat(tuple_pyramid_heatmap,2).squeeze()
         
         ir_heatmap = torch.cat((show_ir,show_ir_laplace,show_ir_laplace_heatmap,show_ir_laplace_heatmap2,show_ir_laplace_heatmap3,show_pyramid_heatmap),2)
-        coefficient = pyramid_addition * alpha/2 + 1
+        coefficient = pyramid_addition * alpha + 1
         image_loss = ((out_images - target_ir).abs()*coefficient).mean()
         # TV Loss
         fusion_tv = self.tv_loss(target_images) + self.tv_loss(target_ir)
